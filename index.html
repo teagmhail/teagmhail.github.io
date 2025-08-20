@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="Personal website of Dmitry Petruk — projects, writing, and a small archive of the Culture by Iain M. Banks.">
+    <meta property="og:title" content="dmitry petruk • teagmháil">
+    <meta property="og:description"
+        content="A personal site with projects and a small archive of Iain M. Banks’ Culture-related materials.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://teagmhail.github.io/">
+    <meta property="og:image" content="https://teagmhail.github.io/assets/herb.png">
+    <title>teagmháil • home</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌿</text></svg>" />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles.css" />
+</head>
+
+<body>
+    <!-- Invisible anchors that become :target -->
+    <a id="auto" aria-hidden="true"></a>
+    <a id="light" aria-hidden="true"></a>
+    <a id="dark" aria-hidden="true"></a>
+    <div class="page">
+        <header class="header">
+            <div class="header-inner">
+                <p class="site-title">teagmháil</p>
+                <nav class="nav nav-auto">
+                    <a href="index.html#auto" class="active">home</a>
+                    <a href="about.html#auto">about</a>
+                    <a href="projects.html#auto">projects</a>
+                    <a href="contact.html#auto">contact</a>
+                    <a href="the-culture/#auto">the culture</a>
+                </nav>
+                <nav class="nav nav-light">
+                    <a href="index.html#light" class="active">home</a>
+                    <a href="about.html#light">about</a>
+                    <a href="projects.html#light">projects</a>
+                    <a href="contact.html#light">contact</a>
+                    <a href="the-culture/#light">the culture</a>
+                </nav>
+                <nav class="nav nav-dark">
+                    <a href="index.html#dark" class="active">home</a>
+                    <a href="about.html#dark">about</a>
+                    <a href="projects.html#dark">projects</a>
+                    <a href="contact.html#dark">contact</a>
+                    <a href="the-culture/#dark">the culture</a>
+                </nav>
+                <div class="theme-toggle" role="group" aria-label="Theme">
+                    <a href="#auto" data-theme="auto">auto</a>
+                    <a href="#light" data-theme="light">light</a>
+                    <a href="#dark" data-theme="dark">dark</a>
+                </div>
+            </div>
+        </header>
+        <br /><br /><br /><br />
+        <main>
+            <section>
+                <h1 class="welcome">
+                    <span>Hi. I’m Dima</span><br />
+                    <span class="text-rotator">
+                        <span class="track">
+                            <span>Welcome</span>
+                            <span>Fáilte</span>
+                        </span>
+                    </span>
+                </h1>
+                <br /><br /><br /><br /><br /><br />
+                <div class="text-home">
+                    <p>This is a simple, <span class="tip-wrap">
+                            <a class="has-tip" aria-describedby="tip-js-free">JS‑free</a>
+                            <span id="tip-js-free" role="tooltip" class="tooltip">
+                                No JavaScript at all<br />Pure HTML & CSS
+                            </span>
+                        </span> corner about things I like.</p>
+                    <p>There's a lot of them, but the three things I love most are
+                        <span class="tip-wrap">
+                            <a class="has-tip" aria-describedby="tip-gaeilge">Gaeilge</a>
+                            <span id="tip-gaeilge" role="tooltip" class="tooltip">
+                                Gaeilge - the Irish language<br />It's beautiful - tá sí álainn
+                            </span>
+                        </span>, <span class="tip-wrap">
+                            <a class="has-tip" aria-describedby="tip-the-culture">the Culture</a>
+                            <span id="tip-the-culture" role="tooltip" class="tooltip">
+                                I've got a page about it<br />Please check it out
+                            </span>
+                        </span> and wild honeysuckle berries.
+                    </p>
+                </div>
+            </section>
+        </main>
+        <footer class="footer"></footer>
+    </div>
+</body>
+
+</html>

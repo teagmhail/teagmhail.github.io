@@ -1,0 +1,559 @@
+html {
+    scrollbar-gutter: stable both-edges;
+    background: var(--page-bg);
+    color: var(--page-text);
+}
+
+body {
+    margin: 0;
+    font-family: 'Merriweather', serif;
+    font-weight: 500;
+    /* slightly bolder than regular */
+}
+
+h1.welcome {
+    font-size: 3rem;
+    /* large enough to be prominent */
+    line-height: 1.2;
+    /* tight line height for the two words */
+    margin: 0;
+    /* remove default margins */
+    text-align: center;
+    /* center the text */
+    font-weight: 600;
+    /* bold for emphasis */
+}
+
+.text {
+    text-align: justify;
+    letter-spacing: normal;
+    line-height: 1.4;
+    text-indent: 3rem;
+}
+
+.text .center {
+    text-align: center;
+    text-indent: 0;
+}
+
+p.no-margin {
+    margin: 0;
+}
+
+/* colors */
+:root {
+    /* default (light theme) */
+    --header-bg: #f7f4ed;
+    --header-text: #2c2c2c;
+    --page-bg: #f7f4ed;
+    --page-text: #2c2c2c;
+}
+
+/* Follow system if no manual choice */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --header-bg: #2c2c2c;
+        --header-text: #f7f4ed;
+        --page-bg: #2c2c2c;
+        --page-text: #f7f4ed;
+    }
+}
+
+/* Manual overrides via URL hash */
+:root:has(#light:target) {
+    --header-bg: #f7f4ed;
+    --header-text: #2c2c2c;
+    --page-bg: #f7f4ed;
+    --page-text: #2c2c2c;
+}
+
+:root:has(#dark:target) {
+    --header-bg: #2c2c2c;
+    --header-text: #f7f4ed;
+    --page-bg: #2c2c2c;
+    --page-text: #f7f4ed;
+}
+
+main {
+    margin: 0;
+    max-width: 50rem;
+    margin-inline: auto;
+    /* center horizontally when viewport > max-width */
+    padding-inline: 1rem;
+    /* small side padding for narrow screens */
+    min-height: 0;
+}
+
+@media (min-width: 60rem) {
+    main {
+        padding-inline: 2rem;
+        /* more breathing room on big screens */
+        margin-inline: auto;
+    }
+}
+
+/* ==================================================== */
+/* theme switcher */
+/* When a hash is present for light/dark, switch the underline */
+#light:target~.page .theme-toggle a[data-theme="auto"]::after,
+#dark:target~.page .theme-toggle a[data-theme="auto"]::after {
+    transform: scaleX(0);
+}
+
+#light:target~.page .theme-toggle a[data-theme="light"]::after {
+    transform: scaleX(1);
+}
+
+#dark:target~.page .theme-toggle a[data-theme="dark"]::after {
+    transform: scaleX(1);
+}
+
+#light:target~.page .theme-toggle a[data-theme="auto"]:hover::after,
+#dark:target~.page .theme-toggle a[data-theme="auto"]:hover::after {
+    transform: scaleX(1);
+}
+
+/* default when no hash or #auto */
+#light:target~.page .nav-auto {
+    display: none;
+}
+
+#dark:target~.page .nav-auto {
+    display: none;
+}
+
+#light:target~.page .nav-light {
+    display: block;
+}
+
+#dark:target~.page .nav-dark {
+    display: block;
+}
+
+/* ==================================================== */
+/* pages navigation styles */
+.nav {
+    /* hide navs for other themes */
+    display: none;
+}
+
+.nav-auto {
+    display: block;
+}
+
+/* current page: underline is always visible */
+.nav a.active::after,
+.theme-toggle a[data-theme="auto"]::after {
+    transform: scaleX(1);
+}
+
+/* ==================================================== */
+/* underscore styles */
+/* reset the default underline + basic look */
+p a,
+.nav a,
+.theme-toggle a,
+.entry a {
+    position: relative;
+    display: inline-block;
+    padding: .1em;
+    text-decoration: none;
+    /* remove default */
+    color: var(--header-text);
+    transition: color .2s ease;
+    width: max-content;
+}
+
+/* the custom underline (hidden initially via scaleX(0)) */
+.nav a::after,
+.theme-toggle a::after,
+.entry a::after,
+.text a::after,
+.entry-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    width: 100%;
+    /* underline position */
+    height: 2px;
+    background: var(--header-text);
+    transform: scaleX(0);
+    transform-origin: left center;
+    border-radius: 999px;
+}
+
+a:not(.entry-title-no-link)::after {
+    transition: transform 220ms cubic-bezier(.2, .8, .2, 1);
+}
+
+.entry-title::after {
+    transition: transform 0.3s ease;
+}
+
+/* hover/focus shows the animated underline */
+a:not(.entry-title-no-link):hover::after,
+a:not(.entry-title-no-link):focus-visible::after,
+button:hover::after {
+    transform: scaleX(1);
+}
+
+
+
+/* ==================================================== */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--header-bg);
+    color: var(--header-text);
+
+}
+
+.header::after {
+    content: "";
+    display: block;
+    height: 2px;
+    max-width: 52rem;
+    /* match main +2rem */
+    margin-inline: auto;
+    /* center it */
+    background: currentColor;
+    border-radius: 999px;
+    transform: scaleX(0);
+    opacity: 0;
+    transform-origin: center;
+}
+
+/* Center the header contents like main */
+.header-inner {
+    max-width: 50rem;
+    /* match main’s max-width */
+    margin-inline: auto;
+    /* center */
+    padding: 0.5rem 1rem;
+    /* same side padding as main */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    position: sticky;
+    top: 100dvh;
+    /* stick to the bottom edge of the viewport */
+}
+
+main h1 {
+    text-align: center;
+}
+
+.page {
+    min-height: 100dvh;
+    /* full height, mobile-safe */
+
+    flex-direction: column;
+}
+
+/* header underline animation */
+/* animate the line as the page scrolls */
+@keyframes header-underline {
+    from {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* modern browsers: tie the animation to the document scroll */
+@supports (animation-timeline: scroll(root block)) {
+    .header::after {
+        animation-name: header-underline;
+        animation-timeline: scroll(root block);
+        /* grow from 0→1 over the first 80px of scroll */
+        animation-range: 0 80px;
+        animation-fill-mode: both;
+        /* keep the end state */
+    }
+}
+
+/* fallback: if scroll-driven animations aren’t supported, just show the line */
+@supports not (animation-timeline: scroll(root block)) {
+    .header::after {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* ==================================================== */
+/* text rotator */
+.text-rotator {
+    display: inline-block;
+    overflow: hidden;
+    height: 1em;
+    /* one line tall so only one word shows */
+    vertical-align: baseline;
+}
+
+/* Stack the two words vertically and animate the TRACK, not each word */
+.text-rotator .track {
+    display: block;
+    will-change: transform;
+    animation: swap 30s ease-in-out infinite;
+}
+
+.text-rotator .track>span {
+    display: block;
+    /* “Welcome” (line 1), “Fáilte” (line 2) */
+}
+
+/* Even timing:
+   - 0–40%: show Welcome
+   - 40–50%: slide up to Fáilte
+   - 50–90%: hold on Fáilte
+   - 90–100%: slide back to Welcome
+*/
+@keyframes swap {
+
+    0%,
+    45% {
+        transform: translateY(-0%);
+    }
+
+    50%,
+    95% {
+        transform: translateY(-50%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+}
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+    .text-rotator .track {
+        animation: none;
+        transform: translateY(0%);
+    }
+}
+
+/* ==================================================== */
+/* the culture */
+.culture-essays {
+    margin-top: 2rem;
+}
+
+.entry {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    /* breathing room between left/right */
+    margin-bottom: 1.5rem;
+    /* space between entries */
+    padding: 0.75rem 0;
+    border-bottom: 1px solid currentColor;
+}
+
+/* Left column: title + meta stacked */
+.entry-info {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    /* space between title and meta */
+    min-width: 0;
+    /* allow long titles to wrap nicely */
+}
+
+.entry-title {
+    width: max-content;
+}
+
+/* The extra line(s) under the title */
+.entry-meta {
+    font-size: .9rem;
+    line-height: 1.6;
+    opacity: .8;
+    /* softer than title without needing a new color var */
+}
+
+/* Keep the links on the right from shrinking */
+.entry-links {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* Optional: on very narrow screens, let the right column drop under */
+@media (max-width: 34rem) {
+    .entry {
+        flex-wrap: wrap;
+    }
+
+    .entry-links {
+        margin-top: .5rem;
+    }
+}
+
+.entry-links a {
+    margin-left: 1rem;
+}
+
+.marain-image {
+    text-align: center;
+    background-color: #f7f4ed;
+}
+
+/* sticky titles */
+/* 1) Make each section title sticky */
+.culture-essays h2,
+.culture-interviews h2,
+.culture-interviews-about-iain h2,
+.non-culture-interviews h2,
+.other h2 {
+    position: sticky;
+    top: calc(var(--header-height, 3.25rem) + 1rem);
+    /* sits just under header */
+    z-index: 5;
+    /* above entries */
+    background: var(--page-bg);
+    /* so text doesn’t overlap content behind */
+    padding-block: .25rem;
+    /* small breathing room */
+    /* optional: a soft underline on the sticky title itself */
+    box-shadow: 0 1px 0 0 color-mix(in oklab, currentColor 35%, transparent);
+}
+
+/* 2) When you jump via anchors, don’t hide the title under the sticky header */
+.culture-essays h2,
+.culture-interviews h2,
+.culture-interviews-about-iain h2,
+.non-culture-interviews h2,
+.other h2 {
+    scroll-margin-top: calc(var(--header-height, 3.25rem) + 0.75rem);
+}
+
+/* 3) Responsive tweak: if your header height changes on small screens */
+@media (max-width: 60rem) {
+
+    .culture-essays h2,
+    .culture-interviews h2,
+    .culture-interviews-about-iain h2,
+    .non-culture-interviews h2,
+    .other h2 {
+        top: calc(var(--header-height, 3.25rem) + 0.25rem);
+        scroll-margin-top: calc(var(--header-height, 3.25rem) + 0.5rem);
+    }
+}
+
+
+/* ==================================================== */
+/* tooltips */
+
+/* Wrapper ensures the tooltip positions relative to the trigger */
+.tip-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+/* Hide by default (keep screen-reader accessible via aria) */
+.tooltip {
+    position: absolute;
+    inset-inline-start: 50%;
+    inset-block-end: calc(100% + .5rem);
+    /* place above the link */
+    transform: translateX(-50%) translateY(.25rem);
+    min-width: 12rem;
+    max-width: 50rem;
+    text-align: center;
+    padding: .5rem .75rem;
+    background: var(--page-bg);
+    color: var(--page-text);
+    border-radius: .5rem;
+    box-shadow: 0 4px 20px var(--page-text);
+    font-size: .9rem;
+    line-height: 1.35;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s ease, transform .18s ease;
+    z-index: 5;
+    white-space: normal;
+    /* allow wrapping */
+}
+
+/* Little arrow */
+.tooltip::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 50%;
+    inset-block-start: 100%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-block-start-color: currentColor;
+    opacity: .15;
+    /* soft arrow via color bleed */
+}
+
+.tooltip {
+    color: inherit;
+}
+
+/* for the arrow color trick */
+.tooltip>* {
+    color: var(--page-text);
+}
+
+/* real text color */
+
+/* Show on hover/focus of the trigger */
+.has-tip:focus+.tooltip,
+.has-tip:hover+.tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+/* Keyboard focus ring for accessibility (if you don’t already have one) */
+.has-tip:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+/* Motion safety */
+@media (prefers-reduced-motion: reduce) {
+    .tooltip {
+        transition: none;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ================================*/
+/* logos */
+.logos p {
+    text-align: center;
+}
+
+.icon-link {
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.icon-link:hover {
+    transform: scale(1.1);
+}
+
+.icon-link svg {
+    margin-left: 0.25rem;
+    /* little breathing room */
+}
