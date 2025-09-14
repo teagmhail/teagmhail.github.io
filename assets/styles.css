@@ -1,27 +1,167 @@
-html {
-    scrollbar-gutter: stable both-edges;
-    background: var(--page-bg);
-    color: var(--page-text);
+@layer base {
+    html {
+        scrollbar-gutter: stable both-edges;
+        background: var(--page-bg);
+        color: var(--page-text);
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Merriweather', serif;
+        font-weight: 500;
+        /* slightly bolder than regular */
+    }
+
+    /* colors */
+    :root {
+        /* default (light theme) */
+        --header-bg: #f7f4ed;
+        --header-text: #2c2c2c;
+        --page-bg: #f7f4ed;
+        --page-text: #2c2c2c;
+        --header-height: 3.25rem;
+    }
+
+    /* Follow system if no manual choice */
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --header-bg: #2c2c2c;
+            --header-text: #f7f4ed;
+            --page-bg: #2c2c2c;
+            --page-text: #f7f4ed;
+            --star-bright: rgba(247, 244, 237, 0.65);
+            --star-dim: rgba(247, 244, 237, 0.55);
+        }
+    }
+
+    /* Manual overrides via URL hash */
+    :root:has(#light:target) {
+        --header-bg: #f7f4ed;
+        --header-text: #2c2c2c;
+        --page-bg: #f7f4ed;
+        --page-text: #2c2c2c;
+        --star-bright: rgba(44, 44, 44, 0.85);
+        --star-dim: rgba(44, 44, 44, 0.65);
+    }
+
+    :root:has(#dark:target) {
+        --header-bg: #2c2c2c;
+        --header-text: #f7f4ed;
+        --page-bg: #2c2c2c;
+        --page-text: #f7f4ed;
+        --star-bright: rgba(247, 244, 237, 0.85);
+        --star-dim: rgba(247, 244, 237, 0.65);
+    }
+
+    /* starry background */
+    body {
+        background-image:
+            /* big bright stars */
+            radial-gradient(2px 2px at 10% 20%, var(--star-bright) 99%, transparent),
+            radial-gradient(2px 2px at 80% 15%, var(--star-bright) 99%, transparent),
+
+            /* medium stars */
+            radial-gradient(1.5px 1.5px at 25% 40%, var(--star-dim) 99%, transparent),
+            radial-gradient(1.5px 1.5px at 60% 10%, var(--star-dim) 99%, transparent),
+            radial-gradient(1.5px 1.5px at 75% 80%, var(--star-dim) 99%, transparent),
+
+            /* small base stars */
+            radial-gradient(1px 1px at 5% 90%, var(--star-bright) 99%, transparent),
+            radial-gradient(1px 1px at 95% 25%, var(--star-dim) 99%, transparent),
+            radial-gradient(1px 1px at 35% 15%, var(--star-dim) 99%, transparent),
+            radial-gradient(1px 1px at 70% 55%, var(--star-bright) 99%, transparent),
+            radial-gradient(1px 1px at 20% 75%, var(--star-bright) 99%, transparent);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    /* Layer A: slower, deeper twinkle */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+            radial-gradient(2px 2px at 50% 70%, var(--star-bright) 99%, transparent),
+            radial-gradient(1px 1px at 15% 50%, var(--star-dim) 99%, transparent),
+            radial-gradient(1px 1px at 45% 85%, var(--star-dim) 99%, transparent),
+            radial-gradient(1px 1px at 90% 45%, var(--star-bright) 99%, transparent),
+            radial-gradient(1px 1px at 65% 25%, var(--star-dim) 99%, transparent);
+        background-repeat: no-repeat;
+        animation: twinkle-slow 10s ease-in-out infinite alternate;
+        opacity: 0.6;
+        /* base depth */
+    }
+
+    /* Layer B: faster, nearer twinkle (slight offset & different stars) */
+    body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+            radial-gradient(1px 1px at 12% 78%, var(--star-bright) 99%, transparent),
+            radial-gradient(1px 1px at 30% 55%, var(--star-bright) 99%, transparent),
+            radial-gradient(1px 1px at 55% 40%, var(--star-dim) 99%, transparent),
+            radial-gradient(1px 1px at 85% 65%, var(--star-bright) 99%, transparent);
+        background-repeat: no-repeat;
+        animation: twinkle-fast 6s ease-in-out infinite alternate;
+        animation-delay: -2s;
+        /* desync the rhythm */
+        opacity: 0.8;
+    }
+
+    /* Keyframes: different ranges for subtle variety */
+    @keyframes twinkle-slow {
+        0% {
+            opacity: 0.25;
+        }
+
+        50% {
+            opacity: 0.9;
+        }
+
+        100% {
+            opacity: 0.35;
+        }
+    }
+
+    @keyframes twinkle-fast {
+        0% {
+            opacity: 0.4;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0.5;
+        }
+    }
+
+    /* Respect users who prefer less motion */
+    @media (prefers-reduced-motion: reduce) {
+
+        body::before,
+        body::after {
+            animation: none !important;
+            opacity: 0.7 !important;
+        }
+    }
 }
 
-body {
-    margin: 0;
-    font-family: 'Merriweather', serif;
-    font-weight: 500;
-    /* slightly bolder than regular */
-}
 
-h1.welcome {
-    font-size: 3rem;
-    /* large enough to be prominent */
-    line-height: 1.2;
-    /* tight line height for the two words */
-    margin: 0;
-    /* remove default margins */
+h1 {
     text-align: center;
-    /* center the text */
-    font-weight: 600;
-    /* bold for emphasis */
+
+    &.welcome {
+        font-size: 3rem;
+        line-height: 1.2;
+        margin-top: 8rem;
+        margin-bottom: 8rem;
+        font-weight: 600;
+    }
 }
 
 .text {
@@ -29,50 +169,28 @@ h1.welcome {
     letter-spacing: normal;
     line-height: 1.4;
     text-indent: 3rem;
-}
+    margin-bottom: 6rem;
 
-.text .center {
-    text-align: center;
-    text-indent: 0;
+    &.essay {
+        margin-top: 6rem;
+    }
+
+    .center {
+        text-align: center;
+        text-indent: 0;
+    }
 }
 
 p.no-margin {
     margin: 0;
 }
 
-/* colors */
-:root {
-    /* default (light theme) */
-    --header-bg: #f7f4ed;
-    --header-text: #2c2c2c;
-    --page-bg: #f7f4ed;
-    --page-text: #2c2c2c;
+section {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
 }
 
-/* Follow system if no manual choice */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --header-bg: #2c2c2c;
-        --header-text: #f7f4ed;
-        --page-bg: #2c2c2c;
-        --page-text: #f7f4ed;
-    }
-}
 
-/* Manual overrides via URL hash */
-:root:has(#light:target) {
-    --header-bg: #f7f4ed;
-    --header-text: #2c2c2c;
-    --page-bg: #f7f4ed;
-    --page-text: #2c2c2c;
-}
-
-:root:has(#dark:target) {
-    --header-bg: #2c2c2c;
-    --header-text: #f7f4ed;
-    --page-bg: #2c2c2c;
-    --page-text: #f7f4ed;
-}
 
 main {
     margin: 0;
@@ -142,7 +260,7 @@ main {
 }
 
 /* current page: underline is always visible */
-.nav a.active::after,
+.nav a[aria-current="page"]::after,
 .theme-toggle a[data-theme="auto"]::after {
     transform: scaleX(1);
 }
@@ -150,10 +268,7 @@ main {
 /* ==================================================== */
 /* underscore styles */
 /* reset the default underline + basic look */
-p a,
-.nav a,
-.theme-toggle a,
-.entry a {
+:where(p a, .nav a, .theme-toggle a, .entry a, .text a) {
     position: relative;
     display: inline-block;
     padding: .1em;
@@ -165,11 +280,7 @@ p a,
 }
 
 /* the custom underline (hidden initially via scaleX(0)) */
-.nav a::after,
-.theme-toggle a::after,
-.entry a::after,
-.text a::after,
-.entry-title::after {
+:where(.nav a, .theme-toggle a, .entry a, .text a, .entry-title)::after {
     content: "";
     position: absolute;
     left: 0;
@@ -193,8 +304,7 @@ a:not(.entry-title-no-link)::after {
 }
 
 /* hover/focus shows the animated underline */
-a:not(.entry-title-no-link):hover::after,
-a:not(.entry-title-no-link):focus-visible::after,
+:where(a):not(.entry-title-no-link, .icon-link):is(:hover, :focus-visible)::after,
 button:hover::after {
     transform: scaleX(1);
 }
@@ -208,7 +318,7 @@ button:hover::after {
     z-index: 10;
     background: var(--header-bg);
     color: var(--header-text);
-
+    margin-bottom: 4rem;
 }
 
 .header::after {
@@ -247,10 +357,6 @@ footer {
     /* stick to the bottom edge of the viewport */
 }
 
-main h1 {
-    text-align: center;
-}
-
 .page {
     min-height: 100dvh;
     /* full height, mobile-safe */
@@ -272,7 +378,7 @@ main h1 {
     }
 }
 
-/* modern browsers: tie the animation to the document scroll */
+/* modern browsers: ties the animation to the document scroll */
 @supports (animation-timeline: scroll(root block)) {
     .header::after {
         animation-name: header-underline;
@@ -284,7 +390,7 @@ main h1 {
     }
 }
 
-/* fallback: if scroll-driven animations aren’t supported, just show the line */
+/* fallback: if scroll-driven animations aren’t supported, just shows the line */
 @supports not (animation-timeline: scroll(root block)) {
     .header::after {
         transform: scaleX(1);
@@ -302,7 +408,7 @@ main h1 {
     vertical-align: baseline;
 }
 
-/* Stack the two words vertically and animate the TRACK, not each word */
+/* Stacks the two words vertically and animate the TRACK, not each word */
 .text-rotator .track {
     display: block;
     will-change: transform;
@@ -347,213 +453,204 @@ main h1 {
 
 /* ==================================================== */
 /* the culture */
-.culture-essays {
-    margin-top: 2rem;
-}
-
-.entry {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    /* breathing room between left/right */
-    margin-bottom: 1.5rem;
-    /* space between entries */
-    padding: 0.75rem 0;
-    border-bottom: 1px solid currentColor;
-}
-
-/* Left column: title + meta stacked */
-.entry-info {
-    display: flex;
-    flex-direction: column;
-    gap: .35rem;
-    /* space between title and meta */
-    min-width: 0;
-    /* allow long titles to wrap nicely */
-}
-
-.entry-title {
-    width: max-content;
-}
-
-/* The extra line(s) under the title */
-.entry-meta {
-    font-size: .9rem;
-    line-height: 1.6;
-    opacity: .8;
-    /* softer than title without needing a new color var */
-}
-
-/* Keep the links on the right from shrinking */
-.entry-links {
-    flex-shrink: 0;
-    white-space: nowrap;
-}
-
-/* Optional: on very narrow screens, let the right column drop under */
-@media (max-width: 34rem) {
+@layer the-culture {
     .entry {
-        flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        /* breathing room between left/right */
+        margin-bottom: 1.5rem;
+        /* space between entries */
+        padding: 0.75rem 0;
+        border-bottom: 1px solid currentColor;
     }
 
+    /* Left column: title + meta stacked */
+    .entry-info {
+        display: flex;
+        flex-direction: column;
+        gap: .35rem;
+        /* space between title and meta */
+        min-width: 0;
+        /* allow long titles to wrap nicely */
+    }
+
+    .entry-title {
+        width: max-content;
+    }
+
+    /* The extra line(s) under the title */
+    .entry-meta {
+        font-size: .9rem;
+        line-height: 1.6;
+        opacity: .8;
+        /* softer than title without needing a new color var */
+    }
+
+    /* Keeps the links on the right from shrinking */
     .entry-links {
-        margin-top: .5rem;
+        flex-shrink: 0;
+        white-space: nowrap;
     }
-}
 
-.entry-links a {
-    margin-left: 1rem;
-}
+    /* On very narrow screens, the right column drops under */
+    @media (max-width: 34rem) {
+        .entry {
+            flex-wrap: wrap;
+        }
 
-.marain-image {
-    text-align: center;
-    background-color: #f7f4ed;
-}
+        .entry-links {
+            margin-top: .5rem;
+        }
+    }
 
-/* sticky titles */
-/* 1) Make each section title sticky */
-.culture-essays h2,
-.culture-interviews h2,
-.culture-interviews-about-iain h2,
-.non-culture-interviews h2,
-.other h2 {
-    position: sticky;
-    top: calc(var(--header-height, 3.25rem) + 1rem);
-    /* sits just under header */
-    z-index: 5;
-    /* above entries */
-    background: var(--page-bg);
-    /* so text doesn’t overlap content behind */
-    padding-block: .25rem;
-    /* small breathing room */
-    /* optional: a soft underline on the sticky title itself */
-    box-shadow: 0 1px 0 0 color-mix(in oklab, currentColor 35%, transparent);
-}
+    .entry-links a {
+        margin-left: 1rem;
+    }
 
-/* 2) When you jump via anchors, don’t hide the title under the sticky header */
-.culture-essays h2,
-.culture-interviews h2,
-.culture-interviews-about-iain h2,
-.non-culture-interviews h2,
-.other h2 {
-    scroll-margin-top: calc(var(--header-height, 3.25rem) + 0.75rem);
-}
+    .culture-essays,
+    .culture-interviews,
+    .other {
+        content-visibility: auto;
+        contain-intrinsic-size: 800px;
+    }
 
-/* 3) Responsive tweak: if your header height changes on small screens */
-@media (max-width: 60rem) {
+    ul.entries {
+        padding-inline-start: 0;
+    }
 
+    /* sticky titles */
     .culture-essays h2,
     .culture-interviews h2,
     .culture-interviews-about-iain h2,
     .non-culture-interviews h2,
     .other h2 {
-        top: calc(var(--header-height, 3.25rem) + 0.25rem);
-        scroll-margin-top: calc(var(--header-height, 3.25rem) + 0.5rem);
+        position: sticky;
+        top: calc(var(--header-height) + 1rem);
+        /* sits just under header */
+        z-index: 5;
+        /* above entries */
+        background: var(--page-bg);
+        /* so text doesn’t overlap content behind */
+        padding-block: .25rem;
+        /* small breathing room */
+        /* optional: a soft underline on the sticky title itself */
+        box-shadow: 0 1px 0 0 color-mix(in oklab, currentColor 35%, transparent);
+        /* When you jump via anchors, don’t hide the title under the sticky header */
+        scroll-margin-top: calc(var(--header-height) + 0.75rem);
+    }
+
+    .marain-image {
+        text-align: center;
+        background-color: #f7f4ed;
     }
 }
 
-
 /* ==================================================== */
 /* tooltips */
+@layer tooltips {
 
-/* Wrapper ensures the tooltip positions relative to the trigger */
-.tip-wrap {
-    position: relative;
-    display: inline-block;
-}
+    /* Wrapper ensures the tooltip positions relative to the trigger */
+    .tip-wrap {
+        position: relative;
+        display: inline-block;
+    }
 
-/* Hide by default (keep screen-reader accessible via aria) */
-.tooltip {
-    position: absolute;
-    inset-inline-start: 50%;
-    inset-block-end: calc(100% + .5rem);
-    /* place above the link */
-    transform: translateX(-50%) translateY(.25rem);
-    min-width: 12rem;
-    max-width: 50rem;
-    text-align: center;
-    padding: .5rem .75rem;
-    background: var(--page-bg);
-    color: var(--page-text);
-    border-radius: .5rem;
-    box-shadow: 0 4px 20px var(--page-text);
-    font-size: .9rem;
-    line-height: 1.35;
-
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .18s ease, transform .18s ease;
-    z-index: 5;
-    white-space: normal;
-    /* allow wrapping */
-}
-
-/* Little arrow */
-.tooltip::after {
-    content: "";
-    position: absolute;
-    inset-inline-start: 50%;
-    inset-block-start: 100%;
-    transform: translateX(-50%);
-    border: 6px solid transparent;
-    border-block-start-color: currentColor;
-    opacity: .15;
-    /* soft arrow via color bleed */
-}
-
-.tooltip {
-    color: inherit;
-}
-
-/* for the arrow color trick */
-.tooltip>* {
-    color: var(--page-text);
-}
-
-/* real text color */
-
-/* Show on hover/focus of the trigger */
-.has-tip:focus+.tooltip,
-.has-tip:hover+.tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    pointer-events: auto;
-}
-
-/* Keyboard focus ring for accessibility (if you don’t already have one) */
-.has-tip:focus {
-    outline: 2px solid currentColor;
-    outline-offset: 2px;
-}
-
-/* Motion safety */
-@media (prefers-reduced-motion: reduce) {
+    /* Hide by default (keep screen-reader accessible via aria) */
     .tooltip {
-        transition: none;
+        position: absolute;
+        inset-inline-start: 50%;
+        inset-block-end: calc(100% + .5rem);
+        /* place above the link */
+        transform: translateX(-50%) translateY(.25rem);
+        min-width: 12rem;
+        max-width: 50rem;
+        text-align: center;
+        padding: .5rem .75rem;
+        background: var(--page-bg);
+        color: var(--page-text);
+        border-radius: .5rem;
+        box-shadow: 0 4px 20px var(--page-text);
+        font-size: .9rem;
+        line-height: 1.35;
+
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .18s ease, transform .18s ease;
+        z-index: 5;
+        white-space: normal;
+        /* allow wrapping */
+    }
+
+    /* Little arrow */
+    .tooltip::after {
+        content: "";
+        position: absolute;
+        inset-inline-start: 50%;
+        inset-block-start: 100%;
+        transform: translateX(-50%);
+        border: 6px solid transparent;
+        border-block-start-color: currentColor;
+        opacity: .15;
+        /* soft arrow via color bleed */
+    }
+
+    .tooltip {
+        color: inherit;
+    }
+
+    /* for the arrow color trick */
+    .tooltip>* {
+        color: var(--page-text);
+    }
+
+    /* real text color */
+
+    /* Show on hover/focus of the trigger */
+    .has-tip:focus+.tooltip,
+    .has-tip:hover+.tooltip {
+        opacity: 1;
         transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+    }
+
+    /* Keyboard focus ring for accessibility (if you don’t already have one) */
+    .has-tip:focus {
+        outline: 2px solid currentColor;
+        outline-offset: 2px;
+    }
+
+    /* Motion safety */
+    @media (prefers-reduced-motion: reduce) {
+        .tooltip {
+            transition: none;
+            transform: translateX(-50%) translateY(0);
+        }
     }
 }
 
 /* ================================*/
 /* logos */
-.logos p {
-    text-align: center;
-}
+@layer logos {
+    .logos p {
+        text-align: center;
+    }
 
-.icon-link {
-    display: inline-flex;
-    align-items: center;
-    color: inherit;
-    text-decoration: none;
-    transition: transform 0.2s ease;
-}
+    .icon-link {
+        display: inline-flex;
+        align-items: center;
+        color: inherit;
+        text-decoration: none;
+        transition: transform 0.2s ease;
+    }
 
-.icon-link:hover {
-    transform: scale(1.1);
-}
+    .icon-link:hover {
+        transform: scale(1.1);
+    }
 
-.icon-link svg {
-    margin-left: 0.25rem;
-    /* little breathing room */
+    .icon-link svg {
+        margin-left: 0.25rem;
+        /* little breathing room */
+    }
 }

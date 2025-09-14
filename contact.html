@@ -14,6 +14,8 @@
     <title>teagmháil • contact</title>
     <link rel="icon" type="image/svg+xml"
         href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🌿%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="assets/styles.css" />
@@ -32,21 +34,21 @@
                     <a href="index.html#auto">home</a>
                     <a href="about.html#auto">about</a>
                     <a href="projects.html#auto">projects</a>
-                    <a href="contact.html#auto" class="active">contact</a>
+                    <a href="contact.html#auto" aria-current="page">contact</a>
                     <a href="the-culture/#auto">the culture</a>
                 </nav>
                 <nav class="nav nav-light">
                     <a href="index.html#light">home</a>
                     <a href="about.html#light">about</a>
                     <a href="projects.html#light">projects</a>
-                    <a href="contact.html#light" class="active">contact</a>
+                    <a href="contact.html#light" aria-current="page">contact</a>
                     <a href="the-culture/#light">the culture</a>
                 </nav>
                 <nav class="nav nav-dark">
                     <a href="index.html#dark">home</a>
                     <a href="about.html#dark">about</a>
                     <a href="projects.html#dark">projects</a>
-                    <a href="contact.html#dark" class="active">contact</a>
+                    <a href="contact.html#dark" aria-current="page">contact</a>
                     <a href="the-culture/#dark">the culture</a>
                 </nav>
                 <div class="theme-toggle" role="group" aria-label="Theme">
@@ -56,7 +58,6 @@
                 </div>
             </div>
         </header>
-        <br /><br />
         <main>
             <h1>Contact</h1>
             <div class="text">
@@ -65,14 +66,13 @@
                     (you’ll find it at the bottom of this page).</p>
                 <br />
                 <p>You can also find me on</p>
-            </div>
-            <div class="logos">
-                <p class="center"><a href="https://github.com/teagmhail" target="_blank" rel="noopener noreferrer"
-                        class="icon-link" aria-label="GitHub profile">
-                        <!-- GitHub SVG logo -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                            viewBox="0 0 16 16">
-                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 
+                <div class="logos">
+                    <p class="center"><a href="https://github.com/teagmhail" target="_blank" rel="noopener noreferrer"
+                            class="icon-link" aria-label="GitHub profile">
+                            <!-- GitHub SVG logo -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 
                                 5.47 7.59.4.07.55-.17.55-.38 
                                 0-.19-.01-.82-.01-1.49-2 
                                 .37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
@@ -86,9 +86,10 @@
                                 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 
                                 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 
                                 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                        </svg>
-                    </a>
-                </p>
+                            </svg>
+                        </a>
+                    </p>
+                </div>
             </div>
         </main>
         <footer class="footer">2025 • Dmitry Petruk</footer>
