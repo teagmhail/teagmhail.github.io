@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Personal website of Dmitry Petruk">
+    <meta property="og:title" content="dmitry petruk • teagṁáil">
+    <meta property="og:description"
+        content="A personal site with projects and a small archive of Iain M. Banks’ Culture-related materials.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://teagmhail.github.io/">
+    <meta property="og:image" content="https://teagmhail.github.io/assets/herb.png">
+    <title>{{ config.title }}{% if page.title %} • {{ page.title }}{% endif %}</title>
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E🌿%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ get_url(path='/blog/atom.xml') }}">
+</head>
+
+<body>
+    <!-- Invisible anchors that become :target -->
+    <a id="auto" aria-hidden="true"></a>
+    <a id="light" aria-hidden="true"></a>
+    <a id="dark" aria-hidden="true"></a>
+    <div class="page">
+        {% include "partials/header.html" %}
+        <main>
+            {% block content %}{% endblock content %}
+        </main>
+        {% block footer %}{% endblock footer %}
+    </div>
+</body>
+
+</html>

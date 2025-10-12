@@ -1,0 +1,60 @@
+{% set extra = "" %}
+{% if body is defined %}
+    {% set extra = body | trim %}
+{% endif %}
+{% set render_mode = render | default(value="markdown") %}
+{% set has_links = links is defined and links | length > 0 %}
+<div class="entry">
+    <div class="entry-info">
+        {% if link %}
+        <a class="entry-title" href="{{ link }}" {% if new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+            {{ title }}
+        </a>
+        {% else %}
+        <span class="entry-title entry-title-no-link">
+            {{ title }}
+        </span>
+        {% endif %}
+        <div class="entry-meta">
+            {% if meta is iterable %}
+                <ul class="entry-meta-list">
+                    {% for item in meta %}
+                    <li>{{ item | markdown(inline=true) | safe }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {{ meta | replace(from="\n", to="<br />") | markdown(inline=true) | safe }}
+            {% endif %}
+        </div>
+    </div>
+    {% if has_links %}
+    <div class="entry-links">
+        {% for item in links %}
+        <a href="{{ item.href }}"
+           {% if item.new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+           {% if item.download %}download{% endif %}
+        >
+            {{ item.label }}
+        </a>
+        {% endfor %}
+    </div>
+    {% elif body is defined and extra != "" %}
+    <div class="entry-links">
+        {% if render_mode == "raw" %}
+            {{ extra | safe }}
+        {% else %}
+            {{ body | markdown }}
+        {% endif %}
+    </div>
+    {% elif image %}
+    <div class="entry-links">
+        {% if link %}
+        <a href="{{ link }}" {% if new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+            <img src="{{ image }}" alt="{{ alt | default(value=title) }}" class="project-image">
+        </a>
+        {% else %}
+        <img src="{{ image }}" alt="{{ alt | default(value=title) }}" class="project-image">
+        {% endif %}
+    </div>
+    {% endif %}
+</div>

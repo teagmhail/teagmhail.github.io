@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ section.title }}
+    <a href="{{ get_url(path='/blog/atom.xml') }}" target="_blank" rel="noopener noreferrer" class="icon-link"
+        aria-label="RSS feed">
+        <!-- RSS SVG logo -->
+        {{ load_data(path="static/icons/rss.svg") | safe }}
+    </a>
+</h1>
+
+{% set posts_by_year = section.pages | sort(attribute="date") | reverse | group_by(attribute="year") %}
+
+{% for year, posts in posts_by_year %}
+<h2>{{ year }}</h2>
+<ul class="post-list">
+    {% for post in posts %}
+    <li>
+        <span class="date">{{ post.date | date(format="%Y-%m-%d") }}</span>
+        <a href="{{ post.permalink }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endfor %}
+{% endblock content %}

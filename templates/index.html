@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="welcome">
+    <span>Hi. I’m Dima</span><br />
+    <span class="text-rotator">
+        <span class="track">
+            <span>Welcome</span>
+            <span>Fáilte</span>
+        </span>
+    </span>
+</h1>
+This is a simple, JS-free corner about things I like.
+<div class="text-home">
+    <p>There's a lot of them, but the three things I love most are
+        <span class="tip-wrap">
+            <a class="has-tip" aria-describedby="tip-gaeilge">Gaeilge</a>
+            <span id="tip-gaeilge" role="tooltip" class="tooltip">
+                Gaeilge - the Irish language<br />It's beautiful - tá sí álainn
+            </span>
+        </span>, <span class="tip-wrap">
+            <a class="has-tip" aria-describedby="tip-the-culture">the Culture</a>
+            <span id="tip-the-culture" role="tooltip" class="tooltip">
+                I've got a page about it<br />Please check it out
+            </span>
+        </span> and wild honeysuckle berries.
+    </p>
+</div>
+
+{% endblock content %}

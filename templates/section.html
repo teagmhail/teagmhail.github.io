@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="section">
+    {% if section.title %}<h1>{{ section.title }}</h1>{% endif %}
+    {{ section.content | safe }}
+</article>
+{% endblock content %}
+{% block footer %}
+{% if section.extra.show_footer | default(value=true) %}
+<footer class="footer">{{ now() | date(format="%Y") }} • {{ config.extra.author }}</footer>
+{% endif %}
+{% endblock footer %}
