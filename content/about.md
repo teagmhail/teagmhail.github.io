@@ -39,6 +39,6 @@ You can also find me on
 
 ## site updates
 Built with Zola and 100% JS-free. All the animations are CSS.
-- 2025‑10 – site moved from plain html to Zola
+- 2025‑10 – site moved from plain html to Zola, added a blog
 - 2025‑09 – some refinements, new Banks interviews on the Culture page and a new project added
 - 2025‑08 – site launched on GitHub Pages: <a href="https://teagmhail.github.io" target="_blank" rel="noopener">teagmhail.github.io</a>
