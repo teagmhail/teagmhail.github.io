@@ -492,6 +492,10 @@ footer {
         margin-block-end: 3em;
     }
 
+    h4 {
+        margin-block-start: 3em;
+    }
+
     .marain-images {
         text-align: center;
         background-color: #f7f4ed;
