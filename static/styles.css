@@ -20,6 +20,8 @@
         --page-bg: #f7f4ed;
         --page-text: #2c2c2c;
         --header-height: 3.25rem;
+        --star-bright: rgba(29, 28, 26, 0.65);
+        --star-dim: rgba(29, 28, 26, 0.55);
     }
 
     /* Follow system if no manual choice */

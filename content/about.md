@@ -3,7 +3,7 @@ title = "About"
 template = "page.html"
 +++
 
-My name’s Dima (short for Dmitry), and this is my personal website. Kind of my Ikroh on the digital space Orbital. Just a place to keep memories, projects, and a bit of myself.
+My name’s Dima (short for Dmitry), and this is my personal website. Just a place to keep memories, projects, and a bit of myself.
 
 If you’ve found your way here, I’m glad you stopped by.
 
