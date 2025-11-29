@@ -8,7 +8,7 @@ show_footer = false
 
 Ever since stepping into the Culture through Iain M. Banks’ words, I’ve never quite left. It’s more than a science-fiction setting to me — it’s an image of the world we could become. A dream that feels both impossible and strangely inevitable, one that stays with me when I work, look ahead, or just think about life.
 
-This page is a small archive — a collection of essays, interviews, and other pieces from and about Iain M. Banks that offer glimpses of the Culture beyond the books.
+This page is a small archive of essays, interviews, and other pieces from and about Iain M. Banks that offer glimpses of the Culture beyond the books.
 
 If the Culture is new to you, I hope something here inspires you to explore it. And if you already know it… well, you’re among friends.
 
