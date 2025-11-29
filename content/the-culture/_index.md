@@ -6,15 +6,15 @@ template = "section.html"
 show_footer = false
 +++
 
-I first stepped into the Culture through Iain M. Banks’ words, and I’ve never quite left. It’s more than a science-fiction setting to me — it’s a glimpse of the world we could become. A dream that feels both impossible and inevitable, and one I carry with me when I write code, imagine the future, and think about what it means to be human.
+Ever since stepping into the Culture through Iain M. Banks’ words, I’ve never quite left. It’s more than a science-fiction setting to me — it’s an image of the world we could become. A dream that feels both impossible and strangely inevitable, one that stays with me when I work, look ahead, or just think about life.
 
 This page is a small archive — a collection of essays, interviews, and other pieces from and about Iain M. Banks that offer glimpses of the Culture beyond the books.
 
-If the Culture is new to you, I hope something here makes you want to explore it. And if you already know it… well, you’re among friends.
+If the Culture is new to you, I hope something here inspires you to explore it. And if you already know it… well, you’re among friends.
 
 If you notice a broken link, a wrong detail, or something missing, please feel free to let me know.
 
-All materials shared here are freely available from public sources. They are collected in one place to help preserve Culture-related works and make them easier to find and enjoy. Some sources are no longer online and can only be accessed through the Internet Archive, which makes preservation all the more important.
+All materials shared here are freely available from public sources. They’ve been gathered in one place to help preserve Culture-related works and make them easier to find and enjoy. Some sources are no longer online and can only be accessed through the Internet Archive, which makes preservation all the more important.
 
 <div class="h2-offset"></div>
 

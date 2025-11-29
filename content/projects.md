@@ -3,7 +3,7 @@ title = "Projects"
 template = "page.html"
 +++
 
-This page gathers small projects I’ve worked on in my free time — beginnings, experiments, and things made with curiosity. This site is plain HTML/CSS, but the projects may use other tools too.
+This page gathers small projects I’ve worked on in my free time. This site is plain HTML/CSS, but the projects may use other tools too.
 
 <section class="projects"></section>
 {{ entry(
