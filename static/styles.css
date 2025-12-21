@@ -191,6 +191,59 @@ main {
     }
 }
 
+
+/* blog images */
+.blog-image {
+    margin: 1.5rem 0 0.5rem;
+
+    summary {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        cursor: zoom-in;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: min(100%, 36rem);
+        transition: max-width 200ms ease;
+    }
+
+}
+
+.blog-image[open] {
+    summary {
+        cursor: zoom-out;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .blog-image img {
+        transition: none;
+    }
+}
+
+.blog-image-description {
+    text-align: center;
+    font-style: italic;
+    text-indent: 0;
+    font-size: 0.85rem;
+    line-height: 1.35;
+    opacity: 0.75;
+    margin: 0.25rem auto 1.5rem;
+    max-width: 36rem;
+}
+
 /* ==================================================== */
 /* underscore styles */
 /* reset the default underline + basic look */

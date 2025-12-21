@@ -9,16 +9,16 @@
         {% endif %}
 
         {% set home_url = config.base_url %}
-        {% set about_url = get_url(path='@/about.md') %}
+        {% set blog_url = get_url(path='@/blog/_index.md') %}
         {% set projects_url = get_url(path='@/projects.md') %}
         {% set culture_url = get_url(path='@/the-culture/_index.md') %}
-        {% set blog_url = get_url(path='@/blog/_index.md') %}
+        {% set about_url = get_url(path='@/about.md') %}
 
         {% set is_home = current_url == home_url %}
-        {% set is_about = current_url == about_url %}
+        {% set is_blog = current_url is starting_with(blog_url) %}
         {% set is_projects = current_url == projects_url %}
         {% set is_culture = current_url is starting_with(culture_url) %}
-        {% set is_blog = current_url is starting_with(blog_url) %}
+        {% set is_about = current_url == about_url %}
 
         <!-- LEFT: site title as home -->
         <div class="nav header-left">
@@ -27,10 +27,10 @@
 
         <!-- CENTER: page links -->
         <div class="nav header-center">
-            <a href="{{ about_url }}" {% if is_about %}aria-current="page" {% endif %}>about</a>
-            <a href="{{ projects_url }}" {% if is_projects %}aria-current="page" {% endif %}>projects</a>
             <a href="{{ blog_url }}" {% if is_blog %}aria-current="page" {% endif %}>blog</a>
+            <a href="{{ projects_url }}" {% if is_projects %}aria-current="page" {% endif %}>projects</a>
             <a href="{{ culture_url }}" {% if is_culture %}aria-current="page" {% endif %}>the culture</a>
+            <a href="{{ about_url }}" {% if is_about %}aria-current="page" {% endif %}>about</a>
         </div>
 
         <!-- RIGHT: spare -->
