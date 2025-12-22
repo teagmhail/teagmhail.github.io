@@ -22,10 +22,27 @@ This is a simple, JS-free corner about things I like.
         </span>, <span class="tip-wrap">
             <a class="has-tip" aria-describedby="tip-the-culture">the Culture</a>
             <span id="tip-the-culture" role="tooltip" class="tooltip">
-                I've got a page about it<br />Please check it out
+                Iain Banks' the Culture<br />I've got a page about it<br />Please check it out
             </span>
         </span> and wild honeysuckle berries.
     </p>
 </div>
+
+{% set blog = get_section(path="blog/_index.md") %}
+{% set latest_posts = blog.pages | sort(attribute="date") | reverse | slice(end=3) %}
+
+{% if latest_posts | length > 0 %}
+<section class="latest-posts">
+    <h2>Latest posts</h2>
+    <ul class="post-list">
+        {% for post in latest_posts %}
+        <li>
+            <span class="date">{{ post.date | date(format="%Y-%m-%d") }}</span>
+            <a href="{{ post.permalink }}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}
 
 {% endblock content %}
