@@ -4,6 +4,8 @@ title = "teagṁáil"
 author = "dmitry petruk"
 description = "Personal website of Dima"
 
+default_language = "en"
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = false
 
@@ -20,3 +22,6 @@ highlight_code = true
 title = "teagṁáil"
 author = "dmitry petruk"
 description = "Personal website of Dima"
+
+[languages.ru]
+title = "teagṁáil"

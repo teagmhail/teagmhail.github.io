@@ -36,9 +36,20 @@ This is a simple, JS-free corner about things I like.
     <h2>Latest posts</h2>
     <ul class="post-list">
         {% for post in latest_posts %}
-        <li>
+        <li class="post-item">
             <span class="date">{{ post.date | date(format="%Y-%m-%d") }}</span>
-            <a href="{{ post.permalink }}">{{ post.title }}</a>
+            <div class="post-text">
+                <a href="{{ post.permalink }}">{{ post.title }}</a>
+                {% if post.translations | length > 1 %}
+                ({% for tr in post.translations | sort(attribute="lang") %}
+                <a href="{{ tr.permalink }}">{{ tr.lang }}</a>
+                {%- if not loop.last %} - {% endif %}
+                {% endfor %})
+                {% endif %}
+                {% if post.extra.subtitle %}
+                <div class="post-subtitle">{{ post.extra.subtitle }}</div>
+                {% endif %}
+            </div>
         </li>
         {% endfor %}
     </ul>

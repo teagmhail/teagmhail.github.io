@@ -249,7 +249,6 @@ main {
 /* reset the default underline + basic look */
 :where(p a, .nav a, .entry a, main a) {
     position: relative;
-    padding: .1em;
     text-decoration: none;
     /* remove default */
     color: var(--header-text);
@@ -669,4 +668,23 @@ footer {
     border-radius: .3rem;
     border: solid 1px var(--page-text);
     filter: grayscale(75%);
+}
+
+/* ==================================== */
+/* blog */
+.post-item {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    column-gap: 1rem;
+    align-items: start;
+}
+
+.post-text a {
+    display: inline-block;
+}
+
+.post-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: 0.15rem;
 }

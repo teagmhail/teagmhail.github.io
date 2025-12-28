@@ -5,6 +5,13 @@
     {% if page.extra.subtitle or page.subtitle %}
     <h3>{{ page.extra.subtitle | default(value=page.subtitle) }}</h3>
     {% endif %}
+    {% if page.translations | length > 1 %}
+    <div class="translations" style="text-align: center;">
+        {% for tr in page.translations | sort(attribute="lang") %}
+        <a href="{{ tr.permalink }}">{{ tr.lang }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
     {% if page.date %}<div style="text-align: right;">
         <em>{{ page.date | date(format="%Y-%m-%d") }}</em>
     </div>{% endif %}
