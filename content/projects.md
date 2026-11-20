@@ -16,7 +16,8 @@ This page gathers small projects I’ve worked on in my free time. This site is 
 /> }}
 
 {{ <entry
-    title="another project"
-    meta="coming soon"
+    title="Tools"
+    link="/tools/"
+    meta="Some browser tools"
 /> }}
 
