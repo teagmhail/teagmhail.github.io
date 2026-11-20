@@ -28,8 +28,9 @@ This is a simple, JS-free corner about things I like.
     </p>
 </div>
 
-{% set blog = get_section(path="blog/_index.md") %}
-{% set latest_posts = blog.pages | sort(attribute="date") | reverse | slice(end=3) %}
+{% set blog = get_section(path="blog/_index.md", lang=config.default_language) %}
+{% set posts = blog.pages | sort(attribute="date") | reverse %}
+{% set latest_posts = posts[:3] %}
 
 {% if latest_posts | length > 0 %}
 <section class="latest-posts">

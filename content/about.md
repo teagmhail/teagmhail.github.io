@@ -3,7 +3,7 @@ title = "About"
 template = "page.html"
 +++
 
-My name’s Dima (short for Dmitry), and this is my personal website. Just a place to keep memories, projects, and a bit of myself.
+My name’s Dima (short for Dmitry), and this is my personal website. Built with Zola and 100% JS-free. All the animations are CSS.
 
 If you’ve found your way here, I’m glad you stopped by.
 
@@ -36,10 +36,3 @@ You can also find me on
     </svg>
   </a>
 </p>
-
-## site updates
-Built with Zola and 100% JS-free. All the animations are CSS.
-- 2025‑11 – more Banks interviews
-- 2025‑10 – site moved from plain html to Zola, added a blog
-- 2025‑09 – some refinements, new Banks interviews on the Culture page and a new project added
-- 2025‑08 – site launched on GitHub Pages: <a href="https://teagmhail.github.io" target="_blank" rel="noopener">teagmhail.github.io</a>

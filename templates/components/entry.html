@@ -1,0 +1,58 @@
+{% component entry(title, meta, link="", new_tab=false, image="", alt=none, links=[], render="markdown") %}
+{# Blank lines would end the Markdown HTML block before the card closes. #}
+{% set extra = body | default(value="") | trim -%}
+<div class="entry">
+    <div class="entry-info">
+        {% if link -%}
+        <a class="entry-title" href="{{ link }}" {% if new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+            {{ title }}
+        </a>
+        {% else -%}
+        <span class="entry-title entry-title-no-link">
+            {{ title }}
+        </span>
+        {% endif -%}
+        <div class="entry-meta">
+            {% if meta is array or meta is map -%}
+                <ul class="entry-meta-list">
+                    {% for item in meta -%}
+                    <li>{{ item | markdown(inline=true) | safe }}</li>
+                    {% endfor -%}
+                </ul>
+            {% else -%}
+                {{ meta | replace(from="\n", to="<br />") | markdown(inline=true) | safe }}
+            {% endif -%}
+        </div>
+    </div>
+    {% if links -%}
+    <div class="entry-links">
+        {% for item in links -%}
+        <a href="{{ item.href }}"
+           {% if item.new_tab %}target="_blank" rel="noopener noreferrer"{% endif -%}
+           {% if item.download %} download{% endif -%}
+        >
+            {{ item.label }}
+        </a>
+        {% endfor -%}
+    </div>
+    {% elif extra -%}
+    <div class="entry-links">
+        {% if render == "raw" -%}
+            {{ extra | regex_replace(pattern="(?m)^[\\t \\r]*$", rep="<!-- -->") | safe }}
+        {% else -%}
+            {{ extra | markdown | trim | safe }}
+        {% endif -%}
+    </div>
+    {% elif image -%}
+    <div class="entry-links">
+        {% if link -%}
+        <a href="{{ link }}" {% if new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+            <img src="{{ image }}" alt="{{ title if alt is none else alt }}" class="project-image">
+        </a>
+        {% else -%}
+        <img src="{{ image }}" alt="{{ title if alt is none else alt }}" class="project-image">
+        {% endif -%}
+    </div>
+    {% endif -%}
+</div>
+{%- endcomponent entry %}

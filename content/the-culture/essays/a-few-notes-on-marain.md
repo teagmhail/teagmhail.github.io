@@ -6,16 +6,16 @@ template = "page.html"
 show_footer = false
 +++
 
-{% entry(
-    title="A Few Notes on Marain",
-    meta="essay, 1998\nfirst published in the culture fanzine, this copy is taken from [trevor-hopkins.com](https://trevor-hopkins.com/banks/a-few-notes-on-marain.html) ([wayback](https://web.archive.org/web/20131029191550/https://trevor-hopkins.com/banks/a-few-notes-on-marain.html))",
-    link="",
-    new_tab=true,
+{% <entry
+    title="A Few Notes on Marain"
+    meta="essay, 1998\nfirst published in the culture fanzine, this copy is taken from [trevor-hopkins.com](https://trevor-hopkins.com/banks/a-few-notes-on-marain.html) ([wayback](https://web.archive.org/web/20131029191550/https://trevor-hopkins.com/banks/a-few-notes-on-marain.html))"
+    link=""
+    new_tab={true}
     render="raw"
-) %}
+> %}
 <a href="/the-culture/files/A Few Notes on Marain - Iain M. Banks.pdf" download>pdf</a>
 <a href="/the-culture/files/A Few Notes on Marain - Iain M. Banks.epub" download>epub</a>
-{% end %}
+{% </entry> %}
 
 # A FEW NOTES ON MARAIN
 ### by Iain M Banks

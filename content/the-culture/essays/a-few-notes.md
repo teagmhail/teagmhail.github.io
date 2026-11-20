@@ -6,18 +6,18 @@ template = "page.html"
 show_footer = false
 +++
 
-{% entry(
-    title="A Few Notes on the Culture",
-    meta="essay, 1994\nfirst shared on usenet (rec.arts.sf.written), now archived in [google groups](https://groups.google.com/g/rec.arts.sf.written/c/RMeezCFdROs/m/wuT-QSbjBSsJ)",
-    link="",
-    new_tab=true,
+{% <entry
+    title="A Few Notes on the Culture"
+    meta="essay, 1994\nfirst shared on usenet (rec.arts.sf.written), now archived in [google groups](https://groups.google.com/g/rec.arts.sf.written/c/RMeezCFdROs/m/wuT-QSbjBSsJ)"
+    link=""
+    new_tab={true}
     render="raw"
-) %}
+> %}
 <a href="https://web.archive.org/web/20210803194317/https://groups.google.com/g/rec.arts.sf.written/c/RMeezCFdROs/m/wuT-QSbjBSsJ" target="_blank" rel="noopener">wayback</a>
 <a href="/the-culture/files/A Few Notes on the Culture - Iain M. Banks.txt" download>txt</a>
 <a href="/the-culture/files/A Few Notes on the Culture - Iain M. Banks.pdf" download>pdf</a>
 <a href="/the-culture/files/A Few Notes on the Culture - Iain M. Banks.epub" download>epub</a>
-{% end %}
+{% </entry> %}
 
 # A FEW NOTES ON THE CULTURE
 ### by Iain M Banks
